@@ -26,20 +26,22 @@ public class UserService {
         return false;
     }
 
-    public static boolean authenticateUser(String login, String password) {
+    public static Long authenticateUser(String login, String password) {
         try (Connection connection = DataBase.getConnection()) {
-            String query = "SELECT password_hash FROM users WHERE login = ?";
+            String query = "SELECT id, password_hash FROM users WHERE login = ?";
             try (PreparedStatement stmt = connection.prepareStatement(query)) {
                 stmt.setString(1, login);
                 ResultSet rs = stmt.executeQuery();
                 if (rs.next()) {
                     String storedHash = rs.getString("password_hash");
-                    return PasswordUtils.checkPassword(password, storedHash);
+                    if(PasswordUtils.checkPassword(password, storedHash)) {
+                        return rs.getLong("id");
+                    }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 }
