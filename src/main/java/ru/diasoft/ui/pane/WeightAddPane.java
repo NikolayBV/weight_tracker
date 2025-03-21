@@ -7,6 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import ru.diasoft.entities.weight.WeightService;
 
 public class WeightAddPane {
     private TextField weightAddField;
@@ -25,8 +26,8 @@ public class WeightAddPane {
         weightAddLabel = new Label();
         weightAddLabel.setText("Укажите свой вес");
 
-        Button weightAddButton = new Button("Добавить вес");
-        weightAddButton.setOnAction(e -> System.out.println(e));
+        Button weightAddButton = new Button("Обновить");
+        weightAddButton.setOnAction(e -> WeightService.addWeight(weightAddField.getText(), weightAddLabel));
 
         VBox vBox = new VBox(10, weightAddField, weightAddLabel, weightAddButton);
         vBox.setAlignment(Pos.CENTER);
