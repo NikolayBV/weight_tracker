@@ -26,7 +26,7 @@ public class WeightAddPane {
         weightAddLabel = new Label();
         weightAddLabel.setText("Укажите свой вес");
 
-        Button weightAddButton = new Button("Обновить");
+        Button weightAddButton = new Button("Добавить вес");
         weightAddButton.setOnAction(e -> WeightService.addWeight(weightAddField.getText(), weightAddLabel));
 
         VBox vBox = new VBox(10, weightAddField, weightAddLabel, weightAddButton);

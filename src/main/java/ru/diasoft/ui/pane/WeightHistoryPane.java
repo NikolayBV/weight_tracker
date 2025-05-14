@@ -24,7 +24,7 @@ public class WeightHistoryPane {
     public VBox createWeightHistoryPane() {
 
         Label weightHistoryLabel = new Label("Ваша история изменений");
-        Button weightReloadButton = new Button("Добавить вес");
+        Button weightReloadButton = new Button("Обновить");
         weightReloadButton.setOnAction(actionEvent -> loadWeightHistory());
         weightHistoryListView = new ListView<>();
         loadWeightHistory();
